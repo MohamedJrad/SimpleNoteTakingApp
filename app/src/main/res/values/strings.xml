@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SimpleNoteTakingApp</string>
+    <string name="log_preferences_name">logPreferences</string>
+</resources>
