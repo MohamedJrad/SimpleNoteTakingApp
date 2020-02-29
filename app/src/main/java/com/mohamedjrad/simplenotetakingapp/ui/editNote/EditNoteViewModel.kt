@@ -3,6 +3,7 @@ package com.mohamedjrad.simplenotetakingapp.ui.editNote
 import android.os.Build
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
 import com.mohamedjrad.simplenotetakingapp.data.model.Note
 
 import com.mohamedjrad.simplenotetakingapp.data.repository.NotesRepositoryImp
