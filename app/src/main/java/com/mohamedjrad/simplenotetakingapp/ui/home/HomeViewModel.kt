@@ -12,6 +12,6 @@ class HomeViewModel @Inject constructor (private val repository: NotesRepository
 
 
     fun getAllNotes(): LiveData<List<Note>> = repository.getAllNotes()
-    fun removeNote(id:Long?)=repository.deleteNoteById(id)
+   // fun removeNote(id:Long?)=repository.deleteNoteById(id)
 
 }

@@ -13,7 +13,7 @@
     </fragment>
     <fragment
         android:id="@+id/editNoteFragment"
-        android:name="com.mohamedjrad.simplenotetakingapp.ui.editNote.EditNoteFragment"
+        android:name="com.mohamedjrad.simplenotetakingapp.ui.AddEditNote.AddEditNoteFragment"
         android:label="EditNoteFragment" >
         <action
             android:id="@+id/action_editNoteFragment_to_homeFragment"

@@ -1,38 +1,41 @@
-package com.mohamedjrad.simplenotetakingapp.ui.editNote
+package com.mohamedjrad.simplenotetakingapp.ui.AddEditNote
 
-import androidx.lifecycle.ViewModelProviders
+import android.opengl.Visibility
 import android.os.Bundle
 import android.text.Editable
 import android.text.SpannableStringBuilder
 import android.text.TextWatcher
 import android.view.*
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.mohamedjrad.simplenotetakingapp.R
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.app_bar_home.*
+import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.edit_note_fragment.*
 import javax.inject.Inject
 
 
-class EditNoteFragment : DaggerFragment() {
+class AddEditNoteFragment : DaggerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private val editNoteViewModel by lazy {
-        ViewModelProvider(this, viewModelFactory)[EditNoteViewModel::class.java]
+        ViewModelProvider(this, viewModelFactory)[AddEditNoteViewModel::class.java]
     }
     private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+
         editNoteViewModel.noteId = arguments!!.getLong("noteId")
 
+
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,32 +47,13 @@ class EditNoteFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        //   activity!!.supportFragmentManager.popBackStack()
+        toolbar?.setupWithNavController(findNavController())
+
         initNote()
-        initDeleteBtn()
-        initBackBtn()
+
 
     }
 
-    private fun initBackBtn() {
-        backBTN.setOnClickListener {
-            editNoteViewModel.saveNote()
-            navController.navigate(R.id.action_editNoteFragment_to_homeFragment)
-        }
-
-    }
-
-    private fun initDeleteBtn() {
-
-        if (editNoteViewModel.noteId != 0L) {
-            deleteBTN.visibility = View.VISIBLE
-
-            deleteBTN.setOnClickListener {
-                editNoteViewModel.deleteNote()
-                navController.navigate(R.id.action_editNoteFragment_to_homeFragment)
-            }
-        }
-    }
 
     private fun initNote() {
 
@@ -130,6 +114,30 @@ class EditNoteFragment : DaggerFragment() {
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.edit_note_fragment_menu, menu)
+        if (editNoteViewModel.noteId != 0L) {
+            menu.findItem(R.id.action_delete).isVisible=true
+        }
 
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_delete -> {
+                editNoteViewModel.deleteNote()
+                navController.navigate(R.id.action_editNoteFragment_to_homeFragment)
+            }
+            R.id.action_cancel->{
+                navController.navigate(R.id.action_editNoteFragment_to_homeFragment)
+            }
+            R.id.action_save ->{
+                editNoteViewModel.saveNote()
+                navController.navigate(R.id.action_editNoteFragment_to_homeFragment)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
 

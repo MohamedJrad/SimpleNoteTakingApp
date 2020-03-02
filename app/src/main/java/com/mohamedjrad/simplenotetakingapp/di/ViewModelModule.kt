@@ -2,7 +2,7 @@ package com.mohamedjrad.simplenotetakingapp.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.mohamedjrad.simplenotetakingapp.ui.editNote.EditNoteViewModel
+import com.mohamedjrad.simplenotetakingapp.ui.AddEditNote.AddEditNoteViewModel
 import com.mohamedjrad.simplenotetakingapp.ui.home.HomeViewModel
 import dagger.Binds
 import dagger.Module
@@ -14,8 +14,8 @@ import dagger.multibindings.IntoMap
 abstract class ViewModelModule {
     @Binds
     @IntoMap
-    @ViewModelKey(EditNoteViewModel::class)
-    abstract fun bindEditNoteViewModel(viewModel: EditNoteViewModel): ViewModel
+    @ViewModelKey(AddEditNoteViewModel::class)
+    abstract fun bindEditNoteViewModel(viewModel: AddEditNoteViewModel): ViewModel
 
     @Binds
     @IntoMap

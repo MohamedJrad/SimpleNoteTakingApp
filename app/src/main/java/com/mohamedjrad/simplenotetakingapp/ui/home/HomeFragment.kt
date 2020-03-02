@@ -2,9 +2,7 @@ package com.mohamedjrad.simplenotetakingapp.ui.home
 
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -21,6 +19,7 @@ import com.leinardi.android.speeddial.SpeedDialActionItem
 import com.leinardi.android.speeddial.SpeedDialView
 import com.mohamedjrad.simplenotetakingapp.R
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 
@@ -35,8 +34,6 @@ class HomeFragment : DaggerFragment() {
     }
 
     private lateinit var navController: NavController
-
-
     private var columnCount = 1
 
 
@@ -47,16 +44,14 @@ class HomeFragment : DaggerFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+
         navController = Navigation.findNavController(view)
-        // initSpeedDial(savedInstanceState == null)
+
         fab.setOnClickListener {
             navController.navigate(R.id.action_homeFragment_to_editNoteFragment)
         }
 
-
-
         setupRecyclerView()
-
 
     }
 
@@ -99,32 +94,6 @@ class HomeFragment : DaggerFragment() {
 
     }
 
-/*
-    private fun initSpeedDial(addActionItems: Boolean) {
-        if (addActionItems) {
-            speedDial.addActionItem(
-                SpeedDialActionItem.Builder(
-                    R.id.fab_no_label,
-                    R.drawable.ic_border_color_white_24dp
-                ).create()
-            )
-        }
-
-        speedDial.setOnActionSelectedListener(SpeedDialView.OnActionSelectedListener { actionItem ->
-            when (actionItem.id) {
-                R.id.fab_no_label -> {
 
 
-                    navController.navigate(R.id.action_homeFragment_to_editNoteFragment)
-
-                    speedDial.close() // To close the Speed Dial with animation
-                    return@OnActionSelectedListener true // false will close it without animation
-                }
-            }
-            false
-        })
-
-    }
-
- */
 }

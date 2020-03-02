@@ -1,16 +1,15 @@
-package com.mohamedjrad.simplenotetakingapp.ui.editNote
+package com.mohamedjrad.simplenotetakingapp.ui.AddEditNote
 
 import android.os.Build
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.navigation.NavController
 import com.mohamedjrad.simplenotetakingapp.data.model.Note
 
 import com.mohamedjrad.simplenotetakingapp.data.repository.NotesRepositoryImp
 import java.time.LocalDateTime
 import javax.inject.Inject
 
-class EditNoteViewModel @Inject constructor(private val repository: NotesRepositoryImp) :
+class AddEditNoteViewModel @Inject constructor(private val repository: NotesRepositoryImp) :
     ViewModel() {
 
 
