@@ -3,16 +3,17 @@ package com.mohamedjrad.simplenotetakingapp.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filterable
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mohamedjrad.simplenotetakingapp.data.model.Note
 import com.mohamedjrad.simplenotetakingapp.databinding.NoteListItemBinding
+import java.util.logging.Filter
 
 
 class NoteListAdapter(val clickListener: Listener) :
     ListAdapter<Note, NoteListAdapter.NoteViewHolder>(DiffCallback()) {
-
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
@@ -40,7 +41,6 @@ class NoteListAdapter(val clickListener: Listener) :
         }
 
 
-
         companion object {
             fun from(parent: ViewGroup): NoteViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
@@ -51,6 +51,8 @@ class NoteListAdapter(val clickListener: Listener) :
 
 
     }
+
+
 }
 
 class DiffCallback : DiffUtil.ItemCallback<Note>() {
